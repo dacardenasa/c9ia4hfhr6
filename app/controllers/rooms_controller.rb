@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+
   def index
     @rooms = Room.all
   end
@@ -13,9 +14,16 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       @errors = @room.errors.full_messages
-      render :new
+      redirect_to new_room_path
     end
   end
+
+  def destroy
+    @room = Room.find(params[:id])
+    @room.destroy
+    redirect_to rooms_path
+  end
+
 
   protected
     def room_params
