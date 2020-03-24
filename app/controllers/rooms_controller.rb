@@ -14,7 +14,22 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       @errors = @room.errors.full_messages
-      redirect_to new_room_path
+      render :new
+    end
+  end
+
+  def edit
+    @room = Room.find(params[:id])
+    render :new
+  end
+
+  def update
+    @room = Room.find(params[:id])
+    if @room.update(room_params)
+      redirect_to rooms_path
+    else
+      @errors = @room.errors.full_messages
+      render :new
     end
   end
 
@@ -23,7 +38,6 @@ class RoomsController < ApplicationController
     @room.destroy
     redirect_to rooms_path
   end
-
 
   protected
     def room_params
