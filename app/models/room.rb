@@ -4,6 +4,6 @@ class Room < ApplicationRecord
   # Validate length description input to 400 characters
   validates :description, length: { maximum: 400 }
   #  Validate fields are numbers
-  validates :beds, :guests, :price_per_night, numericality: true
-  validates :beds, :guests, :price_per_night, numericality: { only_integer: true }
+  validates :beds, :guests, numericality: true
+  validates :beds, :guests, numericality: { only_integer: true }
 end
